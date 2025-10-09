@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Objects;
 
 public abstract class BasePage {
     protected WebDriver driver;
@@ -28,5 +29,13 @@ public abstract class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element));
         return element;
     }
-
+    public boolean isCorrectPage(String url) {
+        try {
+            wait.until(ExpectedConditions.urlToBe(url));
+            return Objects.equals(url, driver.getCurrentUrl());
+        } catch (Exception e) {
+            logger.warn("problem with url assertion");
+            throw new RuntimeException(e);
+        }
+    }
 }

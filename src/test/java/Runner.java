@@ -4,11 +4,10 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/Features/API", "src/test/resources/Features/UI"},
-        glue = {"/StepDefinitions/API", "StepDefinitions/UI", "Utils"},
+        features = {"src.test.resources.features.ui"},
+        glue = {"StepDefinitions.api", "StepDefinitions.ui", "utils"},
         plugin = {"pretty", "html:target/cucumber-reports.html"},
         monochrome = false
-        , tags = "not @manualOnly"
 )
 public class Runner {
 }

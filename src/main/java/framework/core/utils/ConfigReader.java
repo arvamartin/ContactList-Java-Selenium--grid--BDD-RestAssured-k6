@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import static framework.core.utils.Constants.CONFIG_FILE_PATH;
+
 public class ConfigReader {
 
     private static Properties properties = new Properties();
 
     static {
-        try (InputStream fis = ConfigReader.class.getClassLoader().getResourceAsStream("CONFIG_FILE_PATH")){
+        try (InputStream fis = ConfigReader.class.getClassLoader().getResourceAsStream(CONFIG_FILE_PATH.getValue())){
             if (fis != null) {
                 properties.load(fis);
             } else {
