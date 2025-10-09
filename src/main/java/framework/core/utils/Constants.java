@@ -4,6 +4,7 @@ public enum Constants {
 
     BASE_URI("https://thinking-tester-contact-list.herokuapp.com"),
     SCR_SHOT_PATH("screenshots/"),
+    JSON_FILE_PATH("Json/"),
     CONFIG_FILE_PATH ("config.properties");
 
 
