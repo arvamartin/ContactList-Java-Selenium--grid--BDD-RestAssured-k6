@@ -3,6 +3,8 @@ Feature: Logout functionality
 
   Background:
     Given user is already on the "https://thinking-tester-contact-list.herokuapp.com/contactList" page
+    And get user's auth token
+    Given add user's cookies
     When user verifies home page's ui elements
 
 

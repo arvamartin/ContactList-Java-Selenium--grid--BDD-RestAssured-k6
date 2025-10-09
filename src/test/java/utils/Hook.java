@@ -11,6 +11,7 @@ import java.io.IOException;
 import org.apache.logging.log4j.Logger;
 import static framework.core.utils.Browser.getDriver;
 import static framework.core.utils.Browser.quitDriver;
+import static framework.core.utils.Constants.SCR_SHOT_PATH;
 
 
 public class Hook {
@@ -28,7 +29,7 @@ public class Hook {
     private void takeScreenShot(String name) {
         try {
             File scrFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
-            File destFile = new File("SCR_SHOT_PATH" + name + ".png");
+            File destFile = new File(SCR_SHOT_PATH.getValue() + name + ".png");
             FileUtils.copyFile(scrFile, destFile);
             logger.info("Screenshot saved to: {}", destFile.getAbsolutePath());
         } catch (IOException e) {

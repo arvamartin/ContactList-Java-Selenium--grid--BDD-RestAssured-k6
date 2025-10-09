@@ -3,7 +3,9 @@ package framework.core.utils;
 public enum Constants {
 
     BASE_URI("https://thinking-tester-contact-list.herokuapp.com"),
+    SCR_SHOT_PATH("screenshots/"),
     CONFIG_FILE_PATH ("config.properties");
+
 
     private final String value;
 
