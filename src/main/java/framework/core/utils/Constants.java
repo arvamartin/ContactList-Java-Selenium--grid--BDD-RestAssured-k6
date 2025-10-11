@@ -6,6 +6,7 @@ public enum Constants {
     SCR_SHOT_PATH("screenshots/"),
     JSON_FILE_PATH("json/"),
     CONTACTS_PARAM ("/contacts/"),
+    REMOTE_URL("http://localhost:4444/wd/hub"),
     CONFIG_FILE_PATH ("config.properties");
 
 
