@@ -83,9 +83,9 @@ mvn test "-Dbasic_info.browser=chrome" "-Dbasic_info.runMode=grid" "-Dcucumber.f
     k6 run stressTest.js
     ```
 
-### For API tests check details here: [feature file](src/test/resources/Features/API) and here: [Steps](src/test/java/StepDefinitions/API)
-### For Performance tests: [Performance](Performance)
-### For UI tests: [feature file](src/test/resources/Features/UI) and here: [Steps](src/test/java/StepDefinitions/UI)
+### For API tests check details here: [feature file](src/test/resources/features/api) and here: [steps](src/test/java/stepDefinitions/api)
+### For Performance tests: [performance](performance)
+### For UI tests: [feature file](src/test/resources/features/ui) and here: [steps](src/test/java/stepDefinitions/ui)
 
 
 
