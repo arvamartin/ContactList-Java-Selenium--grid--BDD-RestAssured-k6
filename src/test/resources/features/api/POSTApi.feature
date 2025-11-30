@@ -4,6 +4,8 @@ Feature: Post a contact
     Given get user's auth token
     And send new contact from "PostBody.json" in "/contacts" post request
     Then receive the 201 response code
-
+    And hit the url with auth token
+    And pass the "/contacts" url in the request
+    And verify new contact from "PostBody.json" appeared in GET response
 
 

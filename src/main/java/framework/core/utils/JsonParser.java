@@ -2,12 +2,15 @@ package framework.core.utils;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.restassured.response.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
+
 import static framework.core.utils.Constants.JSON_FILE_PATH;
 
 
@@ -34,6 +37,27 @@ public class JsonParser {
         }
         return result;
     }
+
+
+    public static boolean responseContainsSubset(String fileName, Response response) {
+        Map<String, Object> expected = jsonReader(fileName);
+
+        List<Map<String, Object>> actualList = response.jsonPath().getList("");
+
+        for (Map<String, Object> item : actualList) {
+            boolean match = true;
+            for (String key : expected.keySet()) {
+                if (!item.containsKey(key) || !expected.get(key).equals(item.get(key))) {
+                    match = false;
+                    break;
+                }
+            }
+            if (match) return true;
+        }
+
+        return false;
+    }
+
 
 
 }
