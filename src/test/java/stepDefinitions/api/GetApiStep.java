@@ -16,20 +16,19 @@ import java.util.Map;
 
 import static framework.core.utils.Constants.BASE_URI;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
 
 
 public class GetApiStep {
 
     private RequestSpecification httpRequest;
     private Response response;
-    private String authToken = null;
     private final String email = ConfigReader.getValue("user", "email");
     private final String password = ConfigReader.getValue("user", "password");
 
 
     @Given("get user's auth token")
-    public void getUserSAuthToken() {
+    public void getUsersAuthToken() {
         Map<String, Object> body = new HashMap<>();
         body.put("email", email);
         body.put("password", password);
@@ -39,13 +38,13 @@ public class GetApiStep {
                 null,
                 body);
 
-        authToken = loginResponse.jsonPath().getString("token");
+        String authToken = loginResponse.jsonPath().getString("token");
         System.setProperty("authToken", authToken);
     }
 
 
     @Given("hit the url with auth token")
-    public void hitTheContactsGetUrl() {
+    public void prepareAuthorizedRequest() {
         RestAssured.baseURI = BASE_URI.getValue();
 
         Map<String, Object> headers = RequestUtil.buildAuthHeaders();
@@ -53,8 +52,8 @@ public class GetApiStep {
     }
 
     @When("pass the {string} url in the request")
-    public void passTheUrlOfProductsInTheRequest(String param) {
-        response = httpRequest.get(param);
+    public void sendGetRequest(String endpoint) {
+        response = httpRequest.get(endpoint);
         response.body().prettyPrint();
         System.setProperty("actualStatusCode", String.valueOf(response.getStatusCode()));
     }
@@ -69,8 +68,8 @@ public class GetApiStep {
 
 
     @And("verify new contact from {string} appeared in GET response")
-    public void verifyNewContactAppearedInGETResponse(String fileName) {
-       boolean isContain = JsonParser.responseContainsSubset(fileName, response);
-       assertThat(isContain, is(true));
+    public void verifyNewContactAppearedInGetResponse(String fileName) {
+       boolean containsExpectedContact = JsonParser.responseContainsSubset(fileName, response);
+       assertThat(containsExpectedContact, is(true));
     }
 }
