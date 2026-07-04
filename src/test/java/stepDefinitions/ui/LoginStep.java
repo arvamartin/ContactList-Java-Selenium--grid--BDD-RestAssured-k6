@@ -17,18 +17,17 @@ import static org.hamcrest.Matchers.is;
 public class LoginStep {
 
     private final LoginPage loginPage = new LoginPage();
-    private LoginAction loginAction = new LoginAction(Browser.getDriver());
+    private final LoginAction loginAction = new LoginAction(Browser.getDriver());
 
 
 
     @Given("user is already on the {string} page")
     public void userIsOnTheWebPage(String url) throws ConnectException {
         loginPage.navigate(url);
-
     }
 
     @When("user verifies login page's ui elements")
-    public void userVerifiesUiElements() {
+    public void userVerifiesLoginPageUiElements() {
         loginPage.verifyHeadingTitle()
                 .verifyWelcomeMessage()
                 .verifyLoginHeader()
@@ -52,8 +51,8 @@ public class LoginStep {
     }
 
     @Then("user is on the {string} page")
-    public void userIsOnTheHomePage(String url) {
-        boolean isHomePage = loginPage.isCorrectPage(url);
-        assertThat(isHomePage, is(true));
+    public void userIsOnThePage(String url) {
+        boolean isCorrectPage = loginPage.isCorrectPage(url);
+        assertThat(isCorrectPage, is(true));
     }
 }

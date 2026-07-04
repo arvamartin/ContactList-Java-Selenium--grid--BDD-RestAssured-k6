@@ -18,7 +18,7 @@ public class AddContactStep {
 
 
     @When("user verifies home page's ui elements")
-    public void userVerifiesHomePageSUiElements() {
+    public void userVerifiesHomePageUiElements() {
         homePage.verifyHeadingTitle()
                 .verifyMessage()
                 .verifyContentTable()
